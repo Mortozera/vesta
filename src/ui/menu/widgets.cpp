@@ -186,11 +186,11 @@ void select_row(const char* label, int& value, std::span<const char* const> opti
     const auto control_bg =
         mix(ImVec4{27.0f / 255.0f, 27.0f / 255.0f, 35.0f / 255.0f, 0.94f},
             ImVec4{38.0f / 255.0f, 36.0f / 255.0f, 48.0f / 255.0f, 0.98f}, std::max(hover_t, open_t));
-    button_draw->AddRectFilled(button_min, button_max, packed(control_bg), 9.0f);
+    button_draw->AddRectFilled(button_min, button_max, packed(control_bg), 8.0f);
     auto control_border = mix(k_border, k_border_light, hover_t);
     control_border = mix(control_border, k_accent, open_t * 0.65f);
     control_border.w = 0.08f + hover_t * 0.08f + open_t * 0.20f;
-    button_draw->AddRect(button_min, button_max, packed(control_border), 9.0f, 0, 1.0f);
+    button_draw->AddRect(button_min, button_max, packed(control_border), 8.0f, 0, 1.0f);
     const auto* selected_text = render::localization::tr(options[index]);
     const auto label_size = ImGui::CalcTextSize(selected_text);
     // Clipped short of the arrow so an over-long value cannot spill past the
@@ -245,7 +245,7 @@ void select_row(const char* label, int& value, std::span<const char* const> opti
             option_bg = mix(option_bg, ImVec4{k_accent.x, k_accent.y, k_accent.z, 0.13f}, selected_t);
             const auto option_visual_min = option_min + ImVec2{0.0f, 2.0f};
             const auto option_visual_max = option_max - ImVec2{0.0f, 2.0f};
-            popup_draw->AddRectFilled(option_visual_min, option_visual_max, packed(option_bg), 7.0f);
+            popup_draw->AddRectFilled(option_visual_min, option_visual_max, packed(option_bg), 8.0f);
             if (selected_t > 0.01f)
             {
                 popup_draw->AddRectFilled({option_min.x + 3.0f, option_visual_min.y + 6.0f},
@@ -310,11 +310,11 @@ void multiselect_row(const char* label, int& mask, std::span<const std::pair<con
     const auto control_bg =
         mix(ImVec4{27.0f / 255.0f, 27.0f / 255.0f, 35.0f / 255.0f, 0.94f},
             ImVec4{38.0f / 255.0f, 36.0f / 255.0f, 48.0f / 255.0f, 0.98f}, std::max(hover_t, open_t));
-    button_draw->AddRectFilled(button_min, button_max, packed(control_bg), 9.0f);
+    button_draw->AddRectFilled(button_min, button_max, packed(control_bg), 8.0f);
     auto control_border = mix(k_border, k_border_light, hover_t);
     control_border = mix(control_border, k_accent, open_t * 0.65f);
     control_border.w = 0.08f + hover_t * 0.08f + open_t * 0.20f;
-    button_draw->AddRect(button_min, button_max, packed(control_border), 9.0f);
+    button_draw->AddRect(button_min, button_max, packed(control_border), 8.0f);
     const auto label_size = ImGui::CalcTextSize(summary.c_str());
     button_draw->PushClipRect(button_min, {button_max.x - 28.0f, button_max.y}, true);
     button_draw->AddText({button_min.x + 12.0f, button_min.y + (control_height - label_size.y) * 0.5f},
@@ -369,7 +369,7 @@ void multiselect_row(const char* label, int& mask, std::span<const std::pair<con
             option_bg = mix(option_bg, ImVec4{k_accent.x, k_accent.y, k_accent.z, 0.11f}, selected_t);
             const auto option_visual_min = option_min + ImVec2{0.0f, 2.0f};
             const auto option_visual_max = option_max - ImVec2{0.0f, 2.0f};
-            popup_draw->AddRectFilled(option_visual_min, option_visual_max, packed(option_bg), 7.0f);
+            popup_draw->AddRectFilled(option_visual_min, option_visual_max, packed(option_bg), 8.0f);
 
             const auto check_min = ImVec2{option_min.x + 10.0f, option_min.y + 9.0f};
             const auto check_max = check_min + ImVec2{16.0f, 16.0f};
@@ -452,7 +452,7 @@ bool button_row(const char* label, const char* text, row_action_icon icon)
     const auto bmax = ImGui::GetItemRectMax();
 
     auto* dl = ImGui::GetWindowDrawList();
-    constexpr auto rounding = 9.0f;
+    constexpr auto rounding = 8.0f;
     if (hover_t > 0.01f)
     {
         soft_shadow(dl, bmin, bmax, rounding, {0.0f, 3.0f}, 7.0f, {k_accent.x, k_accent.y, k_accent.z, 1.0f},
