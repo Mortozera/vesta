@@ -269,17 +269,17 @@ void draw_title(const guide_content& content, const int step)
 }
 
 // Step 1: two cards, English and Russian; a click switches the language at once.
-void draw_language_step(const guide_content& content, float (&hover)[2], const float dt)
+void draw_language_step(const guide_content& content, float (&hover)[3], const float dt)
 {
     content.paragraph(k_content_top, "Choose your language. It applies at once and is saved with your settings.",
                       false);
     constexpr float gap = 14.0f, card_height = 112.0f;
-    const float card_width = (k_content_width - gap) * 0.5f;
-    constexpr const char* names[]{"English", "Русский"};
-    constexpr const char* hints[]{"Interface in English", "Интерфейс на русском"};
+    const float card_width = (k_content_width - gap * 2.0f) / 3.0f;
+    constexpr const char* names[]{"English", "Русский", "Português (Brasil)"};
+    constexpr const char* hints[]{"Interface in English", "Интерфейс на русском", "Interface em português"};
     const int current = config::general_settings.language;
     auto* draw = content.draw;
-    for (int i = 0; i < 2; ++i)
+    for (int i = 0; i < 3; ++i)
     {
         const auto row = content.screen(k_content_top + 62.0f);
         const ImVec2 min{row.x + static_cast<float>(i) * (card_width + gap), row.y};
