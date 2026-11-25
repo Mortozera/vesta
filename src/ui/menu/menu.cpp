@@ -162,7 +162,7 @@ void menu_t::draw()
         ImGui::SetNextWindowPos(initial_position, ImGuiCond_FirstUseEver);
         ImGui::SetNextWindowSize({k_menu_width, k_menu_height}, ImGuiCond_Always);
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, {0.0f, 0.0f});
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 20.0f);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 8.0f);
         ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
         ImGui::PushStyleVar(ImGuiStyleVar_ScrollbarSize, 4.0f);
         ImGui::PushStyleVar(ImGuiStyleVar_ScrollbarRounding, 10.0f);
@@ -180,10 +180,10 @@ void menu_t::draw()
         g_menu_max = max;
         auto* draw = ImGui::GetWindowDrawList();
         draw->PushClipRectFullScreen();
-        soft_shadow(draw, min, max, 20.0f, {0.0f, 14.0f}, 34.0f, {0, 0, 0, 1}, 1.0f);
+        soft_shadow(draw, min, max, 8.0f, {0.0f, 14.0f}, 34.0f, {0, 0, 0, 1}, 1.0f);
         draw->PopClipRect();
-        draw->AddRectFilled(min, max, packed(k_bg_base), 20.0f);
-        draw->AddRect(min, max, packed(k_border), 20.0f);
+        draw->AddRectFilled(min, max, packed(k_bg_base), 8.0f);
+        draw->AddRect(min, max, packed(k_border), 8.0f);
         draw->AddLine({min.x + 20.0f, min.y + 1.0f}, {max.x - 20.0f, min.y + 1.0f}, IM_COL32(255, 255, 255, 20));
 
         push_menu_font(render::fonts().menu_regular_12);
@@ -217,24 +217,30 @@ void menu_t::draw_sidebar()
     const auto max = ImVec2{min.x + 240.0f, min.y + 650.0f};
     auto* draw = ImGui::GetWindowDrawList();
 
-    add_vertical_gradient_rounded(draw, min, max, IM_COL32(0, 0, 0, 26), IM_COL32(0, 0, 0, 76), 20.0f,
+    add_vertical_gradient_rounded(draw, min, max, IM_COL32(0, 0, 0, 26), IM_COL32(0, 0, 0, 76), 8.0f,
                                   ImDrawFlags_RoundCornersLeft);
     draw->AddLine({max.x - 1.0f, min.y}, {max.x - 1.0f, max.y}, packed(k_border));
 
     const auto* brand = render::fonts().menu_brand_30;
     if (brand && brand->im_font)
     {
-        constexpr auto text = std::string_view{"VESTA"};
-        const auto brand_size = brand->font_size * 1.25f;
+        constexpr auto text = std::string_view{"AIMNEXUS"};
+        const auto brand_size = brand->font_size * 0.86f;
         float width{};
         for (const auto c : text)
             width += brand->im_font->CalcTextSizeA(brand_size, FLT_MAX, 0.0f, &c, &c + 1).x;
-        constexpr auto letter_spacing = 2.5f;
+        constexpr auto letter_spacing = 1.5f;
         width += letter_spacing * (text.size() - 1);
         auto x = min.x + (240.0f - width) * 0.5f;
+        const float cx = min.x + 120.0f;
+        const float cy = min.y + 38.0f;
+        const ImU32 gold = IM_COL32(245, 158, 11, 255);
+        const ImVec2 crown[] = {{cx-18,cy-9},{cx-9,cy-1},{cx,cy-15},{cx+9,cy-1},{cx+18,cy-9},{cx+13,cy+9},{cx-13,cy+9}};
+        draw->AddPolyline(crown, 7, gold, ImDrawFlags_Closed, 2.0f);
+        draw->AddLine({cx-13,cy+13},{cx+13,cy+13},gold,2.0f);
         for (const auto c : text)
         {
-            draw->AddText(brand->im_font, brand_size, {x, min.y + (112.0f - brand_size) * 0.5f}, IM_COL32_WHITE, &c,
+            draw->AddText(brand->im_font, brand_size, {x, min.y + 65.0f}, IM_COL32(245, 158, 11, 255), &c,
                           &c + 1);
             x += brand->im_font->CalcTextSizeA(brand_size, FLT_MAX, 0.0f, &c, &c + 1).x + letter_spacing;
         }
