@@ -56,6 +56,6 @@ private:
     int m_guide_shown_step{};
     int m_guide_direction{1};
     float m_guide_dot[4]{1.0f, 0.0f, 0.0f, 0.0f};
-    float m_guide_hover[2]{};
+    float m_guide_hover[3]{};
 };
 } // namespace ui
