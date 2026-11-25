@@ -9,14 +9,14 @@ enum class id : int
 {
     en = 0,
     ru = 1,
-    pt = 2,
+    pt_br = 2,
     count
 };
 
 // The language chosen in the settings (config::general_profile::language); there is no separate UI state.
 [[nodiscard]] id current();
 
-// Short label for the language switch itself ("EN" / "RU" / 'PT").
+// Short label for the language switch itself ("EN" / "RU" / "PT-BR").
 [[nodiscard]] const char* code(id value);
 
 [[nodiscard]] const char* tr(const char* english);
