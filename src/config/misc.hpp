@@ -283,15 +283,15 @@ struct general_profile
     float menu_scale{1.0f};
     struct interface_palette
     {
-        foundation::rgba background{13, 13, 18, 217};
-        foundation::rgba panel{20, 20, 26, 179};
-        foundation::rgba card{28, 28, 36, 153};
-        foundation::rgba popup{13, 13, 18, 199};
-        foundation::rgba accent{124, 58, 237, 255};
+        foundation::rgba background{16, 16, 16, 245};
+        foundation::rgba panel{24, 24, 24, 235};
+        foundation::rgba card{32, 32, 32, 230};
+        foundation::rgba popup{20, 20, 20, 250};
+        foundation::rgba accent{245, 158, 11, 255};
         foundation::rgba text{248, 248, 242, 255};
         foundation::rgba muted_text{161, 161, 170, 255};
-        foundation::rgba border{255, 255, 255, 15};
-        foundation::rgba hover{255, 255, 255, 20};
+        foundation::rgba border{245, 158, 11, 45};
+        foundation::rgba hover{245, 158, 11, 25};
     } palette{};
 
     bool auto_accept{true};
