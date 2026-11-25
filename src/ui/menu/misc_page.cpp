@@ -432,7 +432,7 @@ void draw_overlay_tab()
     card_in_column("interface", "INTERFACE", 3, 0,
                    [&]
                    {
-                       static constexpr const char* languages[]{"English", "Русский"};
+                       static constexpr const char* languages[]{"English", "Русский", "Português (Brasil)"};
                        select_row("Language", p.language, languages);
                        p.language = std::clamp(p.language, 0, config::general_profile::k_language_count - 1);
                        static constexpr std::array dpi_scales{0.50f, 0.75f, 1.00f, 1.25f, 1.50f};
